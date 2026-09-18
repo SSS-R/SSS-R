@@ -16,9 +16,12 @@ PAD = 34
 
 NAME = "SULTAN RAFI"
 ROLE = "HARNESS   ENGINEER"
-LINE1 = "I build the scaffolding autonomous coding agents run inside:"
-LINE2 = "the specs, the permission layers, the validators."
-LINE3 = "And I'm the one who checks what comes out."
+# The role label already says what I am. These two lines say how I move:
+# early to new tools, and unconvinced by them until I've broken one.
+LINES = (
+    "Adapting new tech in ways the docs don't cover.",
+    "Finding out which half of the promise is real.",
+)
 META = "CS UNDERGRAD  /  BRAC UNIVERSITY  /  DHAKA, BANGLADESH"
 
 THEMES = {
@@ -72,11 +75,11 @@ def render(theme):
              'text-anchor="middle">%s</text>' % (cx, t["accent"], ROLE))
     o.append('<line x1="%d" y1="92" x2="%d" y2="92" stroke="%s"/>' % (cx + 92, cx + 150, t["border"]))
 
-    for i, line in enumerate((LINE1, LINE2, LINE3)):
-        o.append('<text x="%d" y="%d" fill="%s" font-size="12.5" text-anchor="middle">%s</text>'
-                 % (cx, 126 + i * 19, t["muted"], line))
+    for i, line in enumerate(LINES):
+        o.append('<text x="%d" y="%d" fill="%s" font-size="13.5" text-anchor="middle">%s</text>'
+                 % (cx, 132 + i * 21, t["muted"], line))
 
-    o.append('<text x="%d" y="188" fill="%s" font-size="9.5" letter-spacing="2.5" '
+    o.append('<text x="%d" y="186" fill="%s" font-size="9.5" letter-spacing="2.5" '
              'text-anchor="middle">%s</text>' % (cx, t["muted"], META))
 
     o.append('</svg>')
