@@ -89,13 +89,19 @@ foreach ($r in $repos) {
   $slug = "SSS-R/$($r.n)"
   $ghArgs = @('repo','edit',$slug,'--description',$r.d)
   foreach ($topic in $r.t) { $ghArgs += @('--add-topic',$topic) }
-  if     ($r.h -eq 'REMOVE') { $ghArgs += @('--homepage','') }
-  elseif ($r.h)              { $ghArgs += @('--homepage',$r.h) }
+  # NB: PowerShell drops an empty string when splatting to a native exe, so
+  # '--homepage ""' reaches gh as a flag with no argument and the call fails.
+  # Clearing a homepage has to go through the API instead.
+  $clearHome = ($r.h -eq 'REMOVE')
+  if (-not $clearHome -and $r.h) { $ghArgs += @('--homepage',$r.h) }
 
   if ($Apply) {
     Write-Host "-> $slug" -ForegroundColor Cyan
-    & gh @args
+    & gh @ghArgs
     if ($LASTEXITCODE -ne 0) { Write-Host "   FAILED ($LASTEXITCODE)" -ForegroundColor Red }
+    if ($clearHome) {
+      '{"homepage":""}' | & gh api --method PATCH "repos/$slug" --input - | Out-Null
+    }
   } else {
     Write-Host "-> $slug" -ForegroundColor Cyan
     Write-Host "   $($r.d)" -ForegroundColor Gray
