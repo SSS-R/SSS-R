@@ -16,11 +16,9 @@ PAD = 34
 
 NAME = "SULTAN RAFI"
 ROLE = "HARNESS   ENGINEER"
-# The role label already says what I am. These two lines say how I move:
-# early to new tools, and unconvinced by them until I've broken one.
+# The role label already says what I am, so this says how I move instead.
 LINES = (
-    "Adapting new tech in ways the docs don't cover.",
-    "Finding out which half of the promise is real.",
+    "New stacks, used before the tutorials exist.",
 )
 META = "CS UNDERGRAD  /  BRAC UNIVERSITY  /  DHAKA, BANGLADESH"
 
@@ -75,9 +73,12 @@ def render(theme):
              'text-anchor="middle">%s</text>' % (cx, t["accent"], ROLE))
     o.append('<line x1="%d" y1="92" x2="%d" y2="92" stroke="%s"/>' % (cx + 92, cx + 150, t["border"]))
 
+    # Centre the tagline block between the role rule and the meta line, so
+    # the banner stays balanced whether it carries one line or three.
+    top = 140 - (len(LINES) - 1) * 10.5
     for i, line in enumerate(LINES):
-        o.append('<text x="%d" y="%d" fill="%s" font-size="13.5" text-anchor="middle">%s</text>'
-                 % (cx, 132 + i * 21, t["muted"], line))
+        o.append('<text x="%d" y="%.1f" fill="%s" font-size="14" text-anchor="middle">%s</text>'
+                 % (cx, top + i * 21, t["muted"], line))
 
     o.append('<text x="%d" y="186" fill="%s" font-size="9.5" letter-spacing="2.5" '
              'text-anchor="middle">%s</text>' % (cx, t["muted"], META))

@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/SSS-R/SSS-R/main/assets/banner-dark.svg">
-  <img src="https://raw.githubusercontent.com/SSS-R/SSS-R/main/assets/banner-light.svg" alt="Sultan Rafi, harness engineer" width="840">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/SSS-R/SSS-R/main/assets/banner-dark.svg?v=2">
+  <img src="https://raw.githubusercontent.com/SSS-R/SSS-R/main/assets/banner-light.svg?v=2" alt="Sultan Rafi, harness engineer" width="840">
 </picture>
 
 </div>
